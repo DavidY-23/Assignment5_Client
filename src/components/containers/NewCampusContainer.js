@@ -40,9 +40,9 @@ class NewCampusContainer extends Component {
     console.log("Checking this props", this.props)
 
     let campus = {
-        campusname: this.state.campusname,
-        campusaddress: this.state.campusaddress,
-        campusdescription: this.state.campusdescription
+        name: this.state.campusname,
+        address: this.state.campusaddress,
+        description: this.state.campusdescription
     };
     
     console.log("Checking campus:", campus)
