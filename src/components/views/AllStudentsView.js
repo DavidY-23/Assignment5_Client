@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 const AllStudentsView = (props) => {
   const {students, deleteStudent} = props;
+  console.log("students", students);
+
   // If there is no student, display a message
   if (!students.length) {
     return (
@@ -27,6 +29,7 @@ const AllStudentsView = (props) => {
 
       {students.map((student) => {
           let name = student.firstname + " " + student.lastname;
+          console.log("The ID", student.id);
           return (
             <div key={student.id}>
               <Link to={`/student/${student.id}`}>

@@ -7,7 +7,7 @@ If needed, it also defines the component's "connect" function.
 ================================================== */
 import Header from './Header';
 import { Component } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { 
   fetchAllCampusesThunk,
@@ -52,12 +52,13 @@ const mapDispatch = (dispatch) => {
     deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
   };
 };
-
+/*
 // Type check props;
 AllCampusesContainer.propTypes = {
   allCampuses: PropTypes.array.isRequired,
   fetchAllCampuses: PropTypes.func.isRequired,
 };
+*/
 
 // Export store-connected container by default
 // AllCampusesContainer uses "connect" function to connect to Redux Store and to read values from the Store 
