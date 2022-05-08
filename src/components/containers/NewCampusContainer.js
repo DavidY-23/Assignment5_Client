@@ -22,7 +22,7 @@ class NewCampusContainer extends Component {
       campusaddress: "", 
       campusdescription: "", 
       redirect: false, 
-      redirectId: null
+      redirectId: null,
     };
   }
 
@@ -36,8 +36,15 @@ class NewCampusContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-    console.log("Checking this state", this.state)
-    console.log("Checking this props", this.props)
+    if (this.state.campusname === "") {
+      console.log("No name");
+      this.campusValidation = "There is no campus name!!!";
+      console.log(this.campusValidation);
+    }
+
+
+
+
 
     let campus = {
         name: this.state.campusname,
@@ -72,14 +79,17 @@ class NewCampusContainer extends Component {
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
     }
+    console.log("Hello this is rendered")
+    console.log("Campus Validation inside Render", this.campusValidation)
 
-    // Display the input form via the corresponding View component
+        // Display the input form via the corresponding View component
     return (
       <div>
         <Header />
         <NewCampusView
           handleChange = {this.handleChange} 
-          handleSubmit={this.handleSubmit}      
+          handleSubmit={this.handleSubmit}    
+          campusValidation = {this.campusValidation}  
         />
       </div>          
     );

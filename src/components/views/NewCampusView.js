@@ -7,7 +7,6 @@ It constructs a React component to display the new student page.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
   formContainer:{  
@@ -35,8 +34,16 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewCampusView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const {handleChange, handleSubmit, campusValidation} = props;
   const classes = useStyles();
+  console.log("campus view valid", campusValidation);
+
+
+  function ValidateForm(e) {
+    e.preventDefault();
+    console.log("props,", props);
+    console.log("This the form", e.value);
+  }
 
   // Render a New Student view with an input form
   return (
@@ -50,9 +57,11 @@ const NewCampusView = (props) => {
               Add a Campus
             </Typography>
           </div>
+{          //onSubmit={(e) => handleSubmit(e)}
+}
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>Campus Name: </label>
-            <input type="text" name="campusname" onChange ={(e) => handleChange(e)} required />
+            <input type="text" name="campusname" onChange ={(e) => handleChange(e)} />
             <br/>
             <br/>
         
@@ -65,15 +74,16 @@ const NewCampusView = (props) => {
             <input type="text" name="campusdescription" onChange={(e) => handleChange(e)} required/>
             <br/>
             <br/>
-            
+
             <Button variant="contained" color="primary" type="submit">
-              {console.log(props)}
               Submit
             </Button>
             <br/>
             <br/>
           </form>
           </div>
+          {console.log("CampusValidation is:", campusValidation)}
+          <p>{campusValidation}</p>
       </div>
     </div>    
   )
