@@ -5,14 +5,13 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display a single campus and its students (if any).
 ================================================== */
 import { Link } from "react-router-dom";
-import { deleteCampusThunk } from "../../store/thunks";
-import AllCampusesView from '../views/AllCampusesView';
-
+import { useState } from 'react';
 
 // Take in props data to construct the component
 const CampusView = (props) => {
+  //Creating a state to show if a campus has been deleted.
+  const [campusDeleteMessage, setCampusDeleteMessage] = useState("");
   const {campus, deleteCampus} = props;
-  console.log(campus.id)
   let checkingStudent;
   //If statement to see if there are any students.
   if (campus.students.length === 0) {
@@ -20,8 +19,12 @@ const CampusView = (props) => {
   } else {
     checkingStudent = <h3>Students in this campus:</h3>
   }
+  //Used to delete the campus and to return a message to the user. 
+  const deletingTheCampus= () => {
+    deleteCampus(campus.id)
+    setCampusDeleteMessage("Campus has been deleted!");
+  }
 
-  
   // Render a single Campus view with list of its students
   return (
     <div>
@@ -29,7 +32,6 @@ const CampusView = (props) => {
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       {checkingStudent}
-
       {campus.students.map( student => {
         let name = student.firstname + " " + student.lastname;
         return (
@@ -41,7 +43,8 @@ const CampusView = (props) => {
         );
       })}
 
-    <button onClick={() => deleteCampus(campus.id)}>Deleting</button>
+    <button onClick={() => deletingTheCampus(campus.id)}>Delete</button>
+    <p>{campusDeleteMessage}</p>
 
 
     </div>
