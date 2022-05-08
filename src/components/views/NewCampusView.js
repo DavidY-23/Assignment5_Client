@@ -52,17 +52,17 @@ const NewCampusView = (props) => {
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>Campus Name: </label>
-            <input type="text" name="campusname" onChange ={(e) => handleChange(e)} />
+            <input type="text" name="campusname" onChange ={(e) => handleChange(e)} required />
             <br/>
             <br/>
         
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Address: </label>
-            <input type="text" name="campusaddress" onChange={(e) => handleChange(e)} />
+            <input type="text" name="campusaddress" onChange={(e) => handleChange(e)} required />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Description: </label>
-            <input type="text" name="campusdescription" onChange={(e) => handleChange(e)} />
+            <input type="text" name="campusdescription" onChange={(e) => handleChange(e)} required/>
             <br/>
             <br/>
 
