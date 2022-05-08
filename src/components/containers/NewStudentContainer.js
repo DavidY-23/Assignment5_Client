@@ -20,6 +20,9 @@ class NewStudentContainer extends Component {
     this.state = {
       firstname: "", 
       lastname: "", 
+      email: "",
+      imageUrl: "",
+      gpa:"",
       campusId: null, 
       redirect: false, 
       redirectId: null
@@ -36,10 +39,13 @@ class NewStudentContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-
+    console.log("The state of Student", this.state)
     let student = {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
+        email: this.state.email,
+        imageUrl: this.state.imageUrl,
+        gpa: this.state.gpa,
         campusId: this.state.campusId
     };
     
@@ -52,6 +58,9 @@ class NewStudentContainer extends Component {
     this.setState({
       firstname: "", 
       lastname: "", 
+      email: "",
+      imageUrl: "",
+      gpa:"",
       campusId: null, 
       redirect: true, 
       redirectId: newStudent.id
