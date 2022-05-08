@@ -12,7 +12,11 @@ const AllCampusesView = (props) => {
   console.log("AllCampuses", allCampuses)
   // If there is no campus, display a message.
   if (!allCampuses.length) {
-    return <div>There are no campuses.</div>;
+    return <div><p>There are no campuses.</p>;
+    <Link to={`/newcampus`}>
+    <button>Add New Campus!</button>
+    </Link>
+  </div>
   }
   // If there is at least one campus, render All Campuses view 
   return (

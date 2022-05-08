@@ -42,10 +42,6 @@ class NewCampusContainer extends Component {
       console.log(this.campusValidation);
     }
 
-
-
-
-
     let campus = {
         name: this.state.campusname,
         address: this.state.campusaddress,
