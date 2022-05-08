@@ -11,16 +11,16 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import NewCampusView from '../views/NewCampusView';
-import { addStudentThunk } from '../../store/thunks';
+import { addCampusThunk } from '../../store/thunks';
 
 class NewCampusContainer extends Component {
   // Initialize state
   constructor(props){
     super(props);
     this.state = {
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
+      campusname: "", 
+      campusaddress: "", 
+      campusdescription: "", 
       redirect: false, 
       redirectId: null
     };
@@ -36,25 +36,30 @@ class NewCampusContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
+    console.log("Checking this state", this.state)
+    console.log("Checking this props", this.props)
 
-    let student = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        campusId: this.state.campusId
+    let campus = {
+        campusname: this.state.campusname,
+        campusaddress: this.state.campusaddress,
+        campusdescription: this.state.campusdescription
     };
     
+    console.log("Checking campus:", campus)
     // Add new student in back-end database
-    let newStudent = await this.props.addStudent(student);
-
-    // Update state, and trigger redirect to show the new student
+    let newCampus = await this.props.addCampus(campus);
+    console.log("Printing: ", newCampus)
+    // Update state, and trigger redirect to show the new campus
     this.setState({
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
+      campusname: "", 
+      campusaddress: "", 
+      campusdescription:"",
       redirect: true, 
-      redirectId: newStudent.id
+      redirectId: newCampus.id
     });
   }
+
+
 
   // Unmount when the component is being removed from the DOM:
   componentWillUnmount() {
@@ -63,9 +68,9 @@ class NewCampusContainer extends Component {
 
   // Render new student input form
   render() {
-    // Redirect to new student's page after submit
+    // Redirect to new campus's page after submit
     if(this.state.redirect) {
-      return (<Redirect to={`/student/${this.state.redirectId}`}/>)
+      return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
     }
 
     // Display the input form via the corresponding View component
@@ -86,7 +91,7 @@ class NewCampusContainer extends Component {
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
     return({
-        addStudent: (student) => dispatch(addStudentThunk(student)),
+        addCampus: (campus) => dispatch(addCampusThunk(campus)),
     })
 }
 
