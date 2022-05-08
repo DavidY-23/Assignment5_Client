@@ -13,7 +13,7 @@ import { Redirect } from 'react-router-dom';
 import NewStudentView from '../views/NewStudentView';
 import { addStudentThunk } from '../../store/thunks';
 
-class NewStudentContainer extends Component {
+class NewStudentContainerTest extends Component {
   // Initialize state
   constructor(props){
     super(props);
@@ -45,8 +45,6 @@ class NewStudentContainer extends Component {
     
     // Add new student in back-end database
     let newStudent = await this.props.addStudent(student);
-    console.log("NEW STUDENT", newStudent);
-    console.log("Checking this props", this.props)
 
     // Update state, and trigger redirect to show the new student
     this.setState({
@@ -95,4 +93,4 @@ const mapDispatch = (dispatch) => {
 // Export store-connected container by default
 // NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
-export default connect(null, mapDispatch)(NewStudentContainer);
+export default connect(null, mapDispatch)(NewStudentContainerTest);

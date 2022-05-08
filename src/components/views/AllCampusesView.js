@@ -12,7 +12,6 @@ const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
-
   // If there is at least one campus, render All Campuses view 
   return (
     <div>
@@ -30,8 +29,8 @@ const AllCampusesView = (props) => {
         </div>
       ))}
       <br/>
-      <Link to={`/`}>
-        <button>Add New Campus</button>
+      <Link to={`/newcampus`}>
+        <button>Add New Campus!</button>
       </Link>
       <br/><br/>
     </div>
