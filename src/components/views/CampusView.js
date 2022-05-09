@@ -19,16 +19,28 @@ const CampusView = (props) => {
   } else {
     checkingStudent = <h3>Students in this campus:</h3>
   }
+  
   //Used to delete the campus and to return a message to the user. 
   const deletingTheCampus= () => {
     deleteCampus(campus.id)
     setCampusDeleteMessage("Campus has been deleted!");
   }
+    //Default image will be used if user did not input one.
+    let imageLink;
+    console.log("THE CAMPUS PROPS", campus)
+    console.log("The CAMPUS IMAGE LINK:", campus.imageUrl);
+    if (!campus.imageUrl) {
+      imageLink = "https://s29068.pcdn.co/wp-content/uploads/68th-street-campus-768x432.jpg";
+    } else {
+      imageLink = campus.imageUrl;
+    }
+  
 
   // Render a single Campus view with list of its students
   return (
     <div>
       <h1>{campus.name}</h1>
+      <img src={imageLink} alt="img" height={200} width={300}/>
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       {checkingStudent}

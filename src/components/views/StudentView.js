@@ -15,6 +15,7 @@ const StudentView = (props) => {
     campus = "This student has no campus as the ID does not exist."
   }
   //Default image will be used if user did not input one.
+  console.log("STUDNET URL", student.imageUrl)
   let imageLink;
   if (!student.imageUrl) {
     imageLink = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
