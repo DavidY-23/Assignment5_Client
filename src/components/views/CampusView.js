@@ -22,6 +22,7 @@ const CampusView = (props) => {
   
   //Used to delete the campus and to return a message to the user. 
   const deletingTheCampus= () => {
+    console.log(deleteCampus(campus.id))
     deleteCampus(campus.id)
     setCampusDeleteMessage("Campus has been deleted!");
   }

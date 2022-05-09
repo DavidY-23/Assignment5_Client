@@ -4,10 +4,23 @@ StudentView.js
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display the single student view page.
 ================================================== */
+import { useState } from 'react';
+import { deleteStudent } from '../../store/actions/actionCreators';
+
 const StudentView = (props) => {
-  const { student } = props;
+  const { student, deleteStudent } = props;
+  const [studentDeleteMessage, setStudentDeleteMessage] = useState("");
+
   let campus;
   console.log(student.imageUrl)
+  //Used to delete the student
+  const deletingTheStudent= () => {
+    console.log("STUDENT ID:: ", student.id)
+    deleteStudent(student.id)
+
+    //deleteStudent(students.student.id)
+    setStudentDeleteMessage("Student has been deleted!");
+  }
   //If the campus has been deleted. 
   if (student.campus) {
     campus = student.campus.name;
@@ -30,6 +43,12 @@ const StudentView = (props) => {
       <h3>{campus}</h3>
       <h2>{"GPA: " + student.gpa}</h2>
       <img src={imageLink} alt="img" height={100} width={100}/>
+
+      <br></br>
+
+      <button onClick={() => deletingTheStudent(student.id)}>Delete</button>
+      <p>{studentDeleteMessage}</p>
+
     </div>
   );
 
