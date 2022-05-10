@@ -12,6 +12,7 @@ const CampusView = (props) => {
   //Creating a state to show if a campus has been deleted.
   const [campusDeleteMessage, setCampusDeleteMessage] = useState("");
   const {campus, deleteCampus} = props;
+  console.log("Campus", campus)
   if (campus === null) {
     return (
       <div>

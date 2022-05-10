@@ -78,8 +78,6 @@ class NewCampusContainer extends Component {
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
     }
-    console.log("Hello this is rendered")
-    console.log("Campus Validation inside Render", this.campusValidation)
 
         // Display the input form via the corresponding View component
     return (

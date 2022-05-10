@@ -7,6 +7,7 @@ It constructs a React component to display the new student page.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import {useState} from 'react';
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
   formContainer:{  
@@ -35,14 +36,18 @@ const useStyles = makeStyles( () => ({
 
 const NewCampusView = (props) => {
   const {handleChange, handleSubmit, campusValidation} = props;
+  const [validateName, setValidateName] = useState("")
   const classes = useStyles();
   console.log("campus view valid", campusValidation);
-
-
+  let campusValidationTest;
+  //Function used to validate form! 
   function ValidateForm(e) {
     e.preventDefault();
-    console.log("props,", props);
-    console.log("This the form", e.value);
+    if (!e.target[0].value) {
+      console.log("inside if!")
+      setValidateName("There is no campus name!")
+    }
+    console.log("The value of e is", e.target[0].value);
   }
 
   // Render a New Student view with an input form
@@ -59,7 +64,8 @@ const NewCampusView = (props) => {
           </div>
 {          //onSubmit={(e) => handleSubmit(e)}
 }
-          <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => ValidateForm(e)}>
+
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>Campus Name: </label>
             <input type="text" name="campusname" onChange ={(e) => handleChange(e)} />
             <br/>
@@ -71,12 +77,12 @@ const NewCampusView = (props) => {
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Address: </label>
-            <input type="text" name="campusaddress" onChange={(e) => handleChange(e)} required />
+            <input type="text" name="campusaddress" onChange={(e) => handleChange(e)}  />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Description: </label>
-            <input type="text" name="campusdescription" onChange={(e) => handleChange(e)} required/>
+            <input type="text" name="campusdescription" onChange={(e) => handleChange(e)}/>
             <br/>
             <br/>
 
@@ -88,7 +94,7 @@ const NewCampusView = (props) => {
           </form>
           </div>
           {console.log("CampusValidation is:", campusValidation)}
-          <p>{campusValidation}</p>
+          <p>{validateName}</p>
       </div>
     </div>    
   )
