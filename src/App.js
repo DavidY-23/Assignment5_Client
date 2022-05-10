@@ -3,6 +3,7 @@ import "./App.css";
 //Router
 import { Switch, Route } from "react-router-dom";
 import NewCampusContainer  from './components/containers/NewCampusContainer';
+import EditStudentContainer from './components/containers/EditStudentContainer';
 //Components
 import {
   HomePageContainer,
@@ -28,6 +29,7 @@ const App = () => {
         <Route exact path="/students" component={AllStudentsContainer} />
         <Route exact path="/newstudent" component={NewStudentContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
+        <Route exact path="/editstudent/:id" component={EditStudentContainer}/>
       </Switch>        
     </div>
   );
