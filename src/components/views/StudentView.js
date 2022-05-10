@@ -10,9 +10,15 @@ import { deleteStudent } from '../../store/actions/actionCreators';
 const StudentView = (props) => {
   const { student, deleteStudent } = props;
   const [studentDeleteMessage, setStudentDeleteMessage] = useState("");
-
+  //If the student does not exist!
+  if (student === null) {
+    return (
+      <div>
+        <h1>This student does not exist, as the ID does not exist or has been deleted.</h1>
+      </div>
+    )
+  }
   let campus;
-  console.log(student.imageUrl)
   //Used to delete the student
   const deletingTheStudent= () => {
     console.log("STUDENT ID:: ", student.id)
@@ -35,6 +41,8 @@ const StudentView = (props) => {
   } else {
     imageLink = student.imageUrl;
   }
+
+
   // Render a single Student view 
   return (
     <div>
