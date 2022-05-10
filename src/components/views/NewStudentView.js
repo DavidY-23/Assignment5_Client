@@ -7,6 +7,7 @@ It constructs a React component to display the new student page.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useState } from 'react';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
@@ -37,6 +38,27 @@ const useStyles = makeStyles( () => ({
 const NewStudentView = (props) => {
   const {handleChange, handleSubmit } = props;
   const classes = useStyles();
+  const [validatefName, setvalidatefName] = useState("")
+  const [validatelName, setvalidatelName] = useState("")
+  const [validateEmail, setvalidateEmailn] = useState("")
+
+  function ValidateForm(e) {
+    e.preventDefault();
+    if (e.target[0].value && e.target[1].value && e.target[2].value) 
+      handleSubmit(e)
+    if (!e.target[0].value) 
+      setvalidatefName("There is no first name.")
+    else 
+      setvalidatefName("")
+    if (!e.target[1].value) 
+      setvalidatelName("There is no last name.")
+    else  
+      setvalidatelName("")
+    if (!e.target[3].value) 
+      setvalidateEmailn("There is no email.")
+    else
+      setvalidateEmailn("")
+  }
 
   // Render a New Student view with an input form
   return (
@@ -50,7 +72,7 @@ const NewStudentView = (props) => {
               Add a Student
             </Typography>
           </div>
-          <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => ValidateForm(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
             <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
             <br/>
@@ -88,6 +110,10 @@ const NewStudentView = (props) => {
             <br/>
           </form>
           </div>
+          <h3>{validatefName}</h3>
+          <h3>{validatelName}</h3>
+          <h3>{validateEmail}</h3>
+
       </div>
     </div>    
   )

@@ -23,7 +23,6 @@ const StudentView = (props) => {
   const deletingTheStudent= () => {
     console.log("STUDENT ID:: ", student.id)
     deleteStudent(student.id)
-
     //deleteStudent(students.student.id)
     setStudentDeleteMessage("Student has been deleted!");
   }
@@ -32,6 +31,13 @@ const StudentView = (props) => {
     campus = student.campus.name;
   } else {
     campus = "This student has no campus as the ID does not exist."
+  }
+
+  let gpa;
+  if (student.gpa) {
+    gpa = student.gpa;
+  } else {
+    gpa = "This student has no current GPA."
   }
   //Default image will be used if user did not input one.
   console.log("STUDNET URL", student.imageUrl)
@@ -43,13 +49,15 @@ const StudentView = (props) => {
   }
 
 
+
+
   // Render a single Student view 
   return (
     <div>
       <h1>{student.firstname + " " + student.lastname}</h1>
       <h2>{"Students Email: " + student.email}</h2>
       <h3>{campus}</h3>
-      <h2>{"GPA: " + student.gpa}</h2>
+      <h2>{"GPA: " + gpa}</h2>
       <img src={imageLink} alt="img" height={100} width={100}/>
 
       <br></br>

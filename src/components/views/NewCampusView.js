@@ -50,15 +50,15 @@ const NewCampusView = (props) => {
       handleSubmit(e)
     
     if (!e.target[0].value) 
-      setValidateName("There is no campus name!")
+      setValidateName("There is no campus name.")
     else 
       setValidateName("")
     if (!e.target[2].value) 
-      setValidateAddress("There is no campus address!")
+      setValidateAddress("There is no campus address.")
     else  
       setValidateAddress("")
     if (!e.target[3].value) 
-      setValidateDescription("There is no campus description!")
+      setValidateDescription("There is no campus description.")
     else
       setValidateDescription("")
   }
