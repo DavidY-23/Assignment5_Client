@@ -37,17 +37,30 @@ const useStyles = makeStyles( () => ({
 const NewCampusView = (props) => {
   const {handleChange, handleSubmit, campusValidation} = props;
   const [validateName, setValidateName] = useState("")
+  const [validateAddress, setValidateAddress] = useState("")
+  const [validateDescription, setValidateDescription] = useState("")
+
   const classes = useStyles();
   console.log("campus view valid", campusValidation);
-  let campusValidationTest;
-  //Function used to validate form! 
+  //Function used to validate form
+  //Checks if the fields are empty if they are then it will tell the user. If all the required fields are filled out, then the form will submit.
   function ValidateForm(e) {
     e.preventDefault();
-    if (!e.target[0].value) {
-      console.log("inside if!")
+    if (e.target[0].value && e.target[2].value && e.target[3].value) 
+      handleSubmit(e)
+    
+    if (!e.target[0].value) 
       setValidateName("There is no campus name!")
-    }
-    console.log("The value of e is", e.target[0].value);
+    else 
+      setValidateName("")
+    if (!e.target[2].value) 
+      setValidateAddress("There is no campus address!")
+    else  
+      setValidateAddress("")
+    if (!e.target[3].value) 
+      setValidateDescription("There is no campus description!")
+    else
+      setValidateDescription("")
   }
 
   // Render a New Student view with an input form
@@ -95,6 +108,8 @@ const NewCampusView = (props) => {
           </div>
           {console.log("CampusValidation is:", campusValidation)}
           <p>{validateName}</p>
+          <p>{validateAddress}</p>
+          <p>{validateDescription}</p>
       </div>
     </div>    
   )
