@@ -12,6 +12,13 @@ const CampusView = (props) => {
   //Creating a state to show if a campus has been deleted.
   const [campusDeleteMessage, setCampusDeleteMessage] = useState("");
   const {campus, deleteCampus} = props;
+  if (campus === null) {
+    return (
+      <div>
+        <h1>This campus does not exist, as the ID does not exist or has been deleted.</h1>
+      </div>
+    )
+  }
   let checkingStudent;
   //If statement to see if there are any students.
   if (campus.students.length === 0) {
