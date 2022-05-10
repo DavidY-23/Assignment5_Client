@@ -12,12 +12,19 @@ const AllCampusesView = (props) => {
   console.log("AllCampuses", allCampuses)
   // If there is no campus, display a message.
   if (!allCampuses.length) {
-    return <div><p>There are no campuses.</p>;
+    return <div><p>There are no campuses.</p>
     <Link to={`/newcampus`}>
     <button>Add New Campus!</button>
     </Link>
   </div>
   }
+  
+  //Function used to delete the campus then reloading the page.
+  function deletingCampus(campusID) {
+    deleteCampus(campusID)
+    window.location.reload()
+  }
+
   // If there is at least one campus, render All Campuses view 
   return (
     <div>
@@ -31,7 +38,7 @@ const AllCampusesView = (props) => {
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
-          <button onClick={() => deleteCampus(campus.id)}>Delete</button>
+          <button onClick={() => deletingCampus(campus.id)}>Delete</button>
           <hr/>
         </div>
       ))}
