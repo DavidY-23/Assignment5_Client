@@ -6,6 +6,7 @@ It constructs a React component to display the single student view page.
 ================================================== */
 import { useState } from 'react';
 import { deleteStudent } from '../../store/actions/actionCreators';
+import { Link } from "react-router-dom";
 
 const StudentView = (props) => {
   const { student, deleteStudent } = props;
@@ -19,6 +20,8 @@ const StudentView = (props) => {
     )
   }
   let campus;
+  let campusID;
+  let nocampus; 
   //Used to delete the student
   const deletingTheStudent= () => {
     console.log("STUDENT ID:: ", student.id)
@@ -29,8 +32,9 @@ const StudentView = (props) => {
   //If the campus has been deleted. 
   if (student.campus) {
     campus = student.campus.name;
+    campusID = student.campus.id
   } else {
-    campus = "This student has no campus as the ID does not exist."
+    nocampus = "This student has no campus as the ID does not exist, or was not provided."
   }
 
   let gpa;
@@ -56,8 +60,11 @@ const StudentView = (props) => {
     <div>
       <h1>{student.firstname + " " + student.lastname}</h1>
       <h2>{"Students Email: " + student.email}</h2>
-      <h3>{campus}</h3>
-      <h2>{"GPA: " + gpa}</h2>
+      <h3>{nocampus}</h3>
+      <Link to={`/campus/${campusID}`}>
+          <h3>{campus}</h3>
+      </Link>
+      <h3>{"GPA: " + gpa}</h3>
       <img src={imageLink} alt="img" height={100} width={100}/>
 
       <br></br>
