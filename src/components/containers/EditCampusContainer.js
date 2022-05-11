@@ -11,53 +11,42 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import NewCampusView from '../views/NewCampusView';
-import { addCampusThunk } from '../../store/thunks';
+import EditCampusView from '../views/EditCampusView'
+import { fetchCampusThunk, editCampusThunk, fetchAllStudentsThunk } from '../../store/thunks';
 
-class NewCampusContainer extends Component {
-  // Initialize state
-  constructor(props){
-    super(props);
-    this.state = {
-      campusname: "", 
-      imageUrl: "",
-      campusaddress: "", 
-      campusdescription: "", 
-      redirect: false, 
-      redirectId: null,
-    };
+class EditCampusContainer extends Component {
+  componentDidMount() {
+    this.props.fetchCampus(this.props.match.params.id);
   }
-
   // Capture input data when it is entered
   handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      id: this.props.match.params.id
     });
   }
 
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-    
-    let campus = {
-        name: this.state.campusname,
-        imageUrl: this.state.imageUrl,
-        address: this.state.campusaddress,
-        description: this.state.campusdescription
-    };
-    
-    console.log("Checking campus:", campus)
-    // Add new student in back-end database
-    let newCampus = await this.props.addCampus(campus);
-    console.log("Printing: ", newCampus)
+
+    console.log("ID from props", this.props.match.params.id)
+    console.log("The state of CAMPUS", this.state)
+
+        // Add new student in back-end database
     // Update state, and trigger redirect to show the new campus
     this.setState({
-      campusname: "", 
-      imageUrl: "",
-      campusaddress: "", 
-      campusdescription:"",
+      campusname: "NEW CAMPUS NAME YO", 
+      imageUrl: this.state.imageUrl,
+      campusaddress: this.state.campusaddress, 
+      campusdescription: this.state.campusdescription,
       redirect: true, 
-      redirectId: newCampus.id
+      id: this.props.match.params.id,
     });
+    console.log("The New State is", this.state)
+    let newCampus = await this.props.editCampus(this.state);
+    console.log("THE NEW CAMPUS (should be undefined)", newCampus)
+    console.log("THE PROPS OF CAMPUS: ", this.props)
   }
 
 
@@ -70,34 +59,36 @@ class NewCampusContainer extends Component {
   // Render new student input form
   render() {
     // Redirect to new campus's page after submit
-    if(this.state.redirect) {
-      return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
-    }
-
         // Display the input form via the corresponding View component
     return (
       <div>
         <Header />
-        <NewCampusView
+        <EditCampusView
           handleChange = {this.handleChange} 
           handleSubmit={this.handleSubmit}    
-          campusValidation = {this.campusValidation}  
+          campus={this.props.campus}
         />
       </div>          
     );
   }
 }
 
+const mapState = (state) => {
+  return {
+    campus: state.campus,  // Get the State object from Reducer "student"
+  };
+};
 // The following input argument is passed to the "connect" function used by "NewStudentContainer" component to connect to Redux Store.
 // The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
     return({
-        addCampus: (campus) => dispatch(addCampusThunk(campus)),
+      fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
+      editCampus: (campus) => dispatch(editCampusThunk(campus)),
     })
 }
 
 // Export store-connected container by default
 // NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
-export default connect(null, mapDispatch)(NewCampusContainer);
+export default connect(mapState, mapDispatch)(EditCampusContainer);

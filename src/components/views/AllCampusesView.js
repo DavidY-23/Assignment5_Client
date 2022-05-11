@@ -24,6 +24,7 @@ const AllCampusesView = (props) => {
     deleteCampus(campusID)
     window.location.reload()
   }
+  console.log("campuses", allCampuses)
 
   // If there is at least one campus, render All Campuses view 
   return (
@@ -39,6 +40,10 @@ const AllCampusesView = (props) => {
           <p>{campus.address}</p>
           <p>{campus.description}</p>
           <button onClick={() => deletingCampus(campus.id)}>Delete</button>
+          <Link to={`/editCampus/${campus.id}`}>
+              <button>Edit</button>
+          </Link>
+
           <hr/>
         </div>
       ))}
