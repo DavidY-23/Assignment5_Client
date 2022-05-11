@@ -41,7 +41,9 @@ const EditStudentView = (props) => {
   const [validatefName, setvalidatefName] = useState("")
   const [validatelName, setvalidatelName] = useState("")
   const [validateEmail, setvalidateEmailn] = useState("")
-  console.log("STUDENT INSIDE EDITVIEW", student)
+  
+
+  //console.log("STUDENT INSIDE EDITVIEW", student)
   function ValidateForm(e) {
     e.preventDefault();
     if (e.target[0].value && e.target[1].value && e.target[2].value) 
@@ -54,7 +56,7 @@ const EditStudentView = (props) => {
       setvalidatelName("There is no last name.")
     else  
       setvalidatelName("")
-    if (!e.target[3].value) 
+    if (!e.target[2].value) 
       setvalidateEmailn("There is no email.")
     else
       setvalidateEmailn("")
@@ -63,7 +65,7 @@ const EditStudentView = (props) => {
   // Render a New Student view with an input form
   return (
     <div>
-      <h1>Edit Student</h1>
+      <h1>Edit Student: {student.firstname}  {student.lastname}</h1>
 
       <div className={classes.root}>
         <div className={classes.formContainer}>
@@ -72,37 +74,36 @@ const EditStudentView = (props) => {
               Editing Student 
             </Typography>
           </div>
-          <form style={{textAlign: 'center'}} onSubmit={(e) => ValidateForm(e)}>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" value={student.firstname} onChange ={(e) => handleChange(e)} />
+            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname"value={student.lastname} onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Email: </label>
-            <input type="text" name="email" value={student.email} onChange={(e) => handleChange(e)} />
+            <input type="text" name="email"  onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Image Link: (A default one will be used if a link is not provided)</label>
-            <input type="text" name="imageUrl" value={student.imageUrl} onChange={(e) => handleChange(e)} />
+            <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>GPA: </label>
-            <input type="text" name="gpa" value={student.GPA} onChange={(e) => handleChange(e)} />
+            <input type="text" name="gpa" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="text" name="campusId" value={student.campus.id} onChange={(e) => handleChange(e)} />
+            <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
-
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>

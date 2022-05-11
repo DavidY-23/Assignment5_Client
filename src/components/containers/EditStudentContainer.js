@@ -8,7 +8,7 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { fetchStudentThunk, 
   deleteStudentThunk } from "../../store/thunks";
 
@@ -17,6 +17,7 @@ import { editStudentThunk } from '../../store/thunks';
 
 class EditStudentContainer extends Component {
   // Initialize state
+
   componentDidMount() {
     //getting student ID from url
     this.props.fetchStudent(this.props.match.params.id);
@@ -32,6 +33,9 @@ class EditStudentContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
+    //console.log("Studnet ID inside container", this.student.id)
+    //ID is from here. 
+    console.log("ID from props", this.props.match.params.id)
     console.log("The state of Student", this.state)
     let student = {
         firstname: this.state.firstname,
@@ -39,24 +43,26 @@ class EditStudentContainer extends Component {
         email: this.state.email,
         imageUrl: this.state.imageUrl,
         gpa: this.state.gpa,
-        campusId: this.state.campusId
+        campusId: this.state.campusId,
+        redirectId: this.props.match.params.id,
     };
+    console.log("Props ID,", this.props.match.params.id)
     
     // Add new student in back-end database
-    let newStudent = await this.props.addStudent(student);
+    let newStudent = await this.props.editStudent(this.state);
     console.log("EDIT STUDENT IN CONTAINER", newStudent);
     console.log("Checking this props", this.props)
 
     // Update state, and trigger redirect to show the new student
     this.setState({
-      firstname: "", 
-      lastname: "", 
-      email: "",
-      imageUrl: "",
-      gpa: null,
-      campusId: null, 
+      firstname: this.state.firstname, 
+      lastname: this.state.lastname, 
+      email: this.state.email,
+      imageUrl: this.state.imageUrl,
+      gpa: this.state.gpa,
+      campusId: this.state.campusId, 
+      id: this.props.match.params.id,
       redirect: true, 
-      redirectId: newStudent.id
     });
   }
 
@@ -67,10 +73,15 @@ class EditStudentContainer extends Component {
 
   // Render new student input form
   render() {
+
     // Redirect to new student's page after submit
-
-
     // Display the input form via the corresponding View component
+    /*
+    if(!this.state.redirect) {
+      return (<Link to={`/student/${this.props.match.params.id}`}/>)
+    }
+    */
+
     return (
       <div>
         <Header />
