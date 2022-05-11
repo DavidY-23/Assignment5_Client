@@ -6,6 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const AllCampusesView = (props) => {
   const {allCampuses, deleteCampus} = props;
@@ -18,11 +19,9 @@ const AllCampusesView = (props) => {
     </Link>
   </div>
   }
-  
   //Function used to delete the campus then reloading the page.
   function deletingCampus(campusID) {
     deleteCampus(campusID)
-    window.location.reload()
   }
   console.log("campuses", allCampuses)
 

@@ -33,11 +33,6 @@ class EditStudentContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-    //console.log("Studnet ID inside container", this.student.id)
-    //ID is from here. 
-    console.log("ID from props", this.props.match.params.id)
-    console.log("The state of Student", this.state)
-    console.log("Props ID,", this.props.match.params.id)
     
     // Add new student in back-end database
 
@@ -54,8 +49,7 @@ class EditStudentContainer extends Component {
     });
 
     let newStudent = await this.props.editStudent(this.state);
-    console.log("EDIT STUDENT IN CONTAINER", newStudent);
-    console.log("Checking this props", this.props.student)
+    console.log(newStudent);
 
   }
 

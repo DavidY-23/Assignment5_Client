@@ -41,7 +41,6 @@ const NewCampusView = (props) => {
   const [validateDescription, setValidateDescription] = useState("")
 
   const classes = useStyles();
-  console.log("campus view valid", campusValidation);
   //Function used to validate form
   //Checks if the fields are empty if they are then it will tell the user. If all the required fields are filled out, then the form will submit.
   function ValidateForm(e) {
@@ -106,7 +105,6 @@ const NewCampusView = (props) => {
             <br/>
           </form>
           </div>
-          {console.log("CampusValidation is:", campusValidation)}
           <p>{validateName}</p>
           <p>{validateAddress}</p>
           <p>{validateDescription}</p>

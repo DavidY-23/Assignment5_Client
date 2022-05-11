@@ -44,11 +44,8 @@ class NewCampusContainer extends Component {
         address: this.state.campusaddress,
         description: this.state.campusdescription
     };
-    
-    console.log("Checking campus:", campus)
     // Add new student in back-end database
     let newCampus = await this.props.addCampus(campus);
-    console.log("Printing: ", newCampus)
     // Update state, and trigger redirect to show the new campus
     this.setState({
       name: "", 

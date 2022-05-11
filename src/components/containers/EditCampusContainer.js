@@ -1,5 +1,5 @@
 /*==================================================
-NewCampusContainer.js
+EditCampusContainer.js
 
 The Container component is responsible for stateful logic and data fetching, and
 passes data (if any) as props to the corresponding View component.
@@ -8,11 +8,9 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
-import NewCampusView from '../views/NewCampusView';
 import EditCampusView from '../views/EditCampusView'
-import { fetchCampusThunk, editCampusThunk, fetchAllStudentsThunk } from '../../store/thunks';
+import { fetchCampusThunk, editCampusThunk } from '../../store/thunks';
 
 class EditCampusContainer extends Component {
   componentDidMount() {
@@ -29,11 +27,7 @@ class EditCampusContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-
-    console.log("ID from props", this.props.match.params.id)
-    console.log("The state of CAMPUS", this.state)
-
-        // Add new student in back-end database
+    // Add new student in back-end database
     // Update state, and trigger redirect to show the new campus
     this.setState({
       name: this.state.campusname, 
@@ -44,8 +38,7 @@ class EditCampusContainer extends Component {
       id: this.props.match.params.id,
     });
     let newCampus = await this.props.editCampus(this.state);
-    console.log("THE NEW CAMPUS (should be undefined)", newCampus)
-    console.log("THE PROPS OF CAMPUS: ", this.props)
+    console.log(newCampus)
   }
 
 
