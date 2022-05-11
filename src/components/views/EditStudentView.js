@@ -41,6 +41,7 @@ const EditStudentView = (props) => {
   const [validatefName, setvalidatefName] = useState("")
   const [validatelName, setvalidatelName] = useState("")
   const [validateEmail, setvalidateEmailn] = useState("")
+  const [edit, setEdit] = useState("")
   
 
   //console.log("STUDENT INSIDE EDITVIEW", student)
@@ -61,6 +62,11 @@ const EditStudentView = (props) => {
     else
       setvalidateEmailn("")
   }
+  function editedTheForm(e) {
+    e.preventDefault();
+    handleSubmit(e)
+    setEdit("The student has information edited.")
+  }
 
   // Render a New Student view with an input form
   return (
@@ -74,7 +80,7 @@ const EditStudentView = (props) => {
               Editing Student 
             </Typography>
           </div>
-          <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => editedTheForm(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
             <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
             <br/>
@@ -114,6 +120,7 @@ const EditStudentView = (props) => {
           <h3>{validatefName}</h3>
           <h3>{validatelName}</h3>
           <h3>{validateEmail}</h3>
+          <h3>{edit}</h3>
 
       </div>
     </div>    
