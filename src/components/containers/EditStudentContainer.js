@@ -55,7 +55,7 @@ class EditStudentContainer extends Component {
 
     let newStudent = await this.props.editStudent(this.state);
     console.log("EDIT STUDENT IN CONTAINER", newStudent);
-    console.log("Checking this props", this.props)
+    console.log("Checking this props", this.props.student)
 
   }
 
