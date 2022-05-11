@@ -21,13 +21,10 @@ const AllStudentsView = (props) => {
     );
   }
 
-  
-  
   // If there is at least one student, render All Students view 
   return (
     <div>
       <h1>All Students</h1>
-
       {students.map((student) => {
           let name = student.firstname + " " + student.lastname;
           return (

@@ -1,5 +1,5 @@
 /*==================================================
-NewStudentView.js
+NewCampusView.js
 
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display the new student page.
@@ -35,7 +35,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewCampusView = (props) => {
-  const {handleChange, handleSubmit, campusValidation} = props;
+  const {handleChange, handleSubmit} = props;
   const [validateName, setValidateName] = useState("")
   const [validateAddress, setValidateAddress] = useState("")
   const [validateDescription, setValidateDescription] = useState("")
@@ -62,11 +62,10 @@ const NewCampusView = (props) => {
       setValidateDescription("")
   }
 
-  // Render a New Student view with an input form
+  // Render a New Campus view with an input form
   return (
     <div>
       <h1>New Campus</h1>
-
       <div className={classes.root}>
         <div className={classes.formContainer}>
           <div className={classes.formTitle}>
@@ -74,8 +73,6 @@ const NewCampusView = (props) => {
               Add a Campus
             </Typography>
           </div>
-{          //onSubmit={(e) => handleSubmit(e)}
-}
           <form style={{textAlign: 'center'}} onSubmit={(e) => ValidateForm(e)}>
 
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>Campus Name: </label>

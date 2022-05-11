@@ -35,14 +35,13 @@ const useStyles = makeStyles( () => ({
 }));
 
 const EditCampusView = (props) => {
-  const {handleChange, handleSubmit, campusValidation, campus} = props;
+  const {handleChange, handleSubmit, campus} = props;
   const [validateName, setValidateName] = useState("")
   const [validateAddress, setValidateAddress] = useState("")
   const [validateDescription, setValidateDescription] = useState("")
   const [edit, setEdit] = useState("")
 
   const classes = useStyles();
-  console.log("campus view valid", campusValidation);
   //Function used to validate form
   //Checks if the fields are empty if they are then it will tell the user. If all the required fields are filled out, then the form will submit.
   function ValidateForm(e) {
@@ -71,7 +70,7 @@ const EditCampusView = (props) => {
 
   }
 
-  // Render a New Student view with an input form
+  // Render the Edit Campus view with an input form
   return (
     <div>
       <h1>Edit Campus {campus.name} </h1>

@@ -21,11 +21,9 @@ const StudentView = (props) => {
   let campus;
   let campusID;
   let nocampus; 
-  //Used to delete the student
+  //Function used to delete the student and to tell user
   const deletingTheStudent= () => {
-    console.log("STUDENT ID:: ", student.id)
     deleteStudent(student.id)
-    //deleteStudent(students.student.id)
     setStudentDeleteMessage("Student has been deleted!");
   }
   //If the campus has been deleted. 
@@ -36,6 +34,7 @@ const StudentView = (props) => {
     nocampus = "This student has no campus as the ID does not exist, or was not provided."
   }
 
+  //Checks if there is a GPA if not, it will tell the user
   let gpa;
   if (student.gpa) {
     gpa = student.gpa;
@@ -50,9 +49,6 @@ const StudentView = (props) => {
   } else {
     imageLink = student.imageUrl;
   }
-
-
-
 
   // Render a single Student view 
   return (

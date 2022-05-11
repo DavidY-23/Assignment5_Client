@@ -1,5 +1,5 @@
 /*==================================================
-NewStudentContainer.js
+EditStudentContainer.js
 
 The Container component is responsible for stateful logic and data fetching, and
 passes data (if any) as props to the corresponding View component.
@@ -8,11 +8,8 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import { fetchStudentThunk } from "../../store/thunks";
-
+import { fetchStudentThunk, editStudentThunk } from "../../store/thunks";
 import EditStudentView from '../views/EditStudentView';
-import { editStudentThunk } from '../../store/thunks';
 
 class EditStudentContainer extends Component {
   // Initialize state

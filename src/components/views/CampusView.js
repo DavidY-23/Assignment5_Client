@@ -12,7 +12,7 @@ const CampusView = (props) => {
   //Creating a state to show if a campus has been deleted.
   const [campusDeleteMessage, setCampusDeleteMessage] = useState("");
   const {campus, deleteCampus} = props;
-  console.log("Campus", campus)
+  //If user entered invalid campus ID.
   if (campus === null) {
     return (
       <div>
@@ -30,21 +30,17 @@ const CampusView = (props) => {
   
   //Used to delete the campus and to return a message to the user. 
   const deletingTheCampus= () => {
-    console.log(deleteCampus(campus.id))
     deleteCampus(campus.id)
     setCampusDeleteMessage("Campus has been deleted!");
   }
     //Default image will be used if user did not input one.
     let imageLink;
-    console.log("THE CAMPUS PROPS", campus)
-    console.log("The CAMPUS IMAGE LINK:", campus.imageUrl);
     if (!campus.imageUrl) {
       imageLink = "https://s29068.pcdn.co/wp-content/uploads/68th-street-campus-768x432.jpg";
     } else {
       imageLink = campus.imageUrl;
     }
   
-
   // Render a single Campus view with list of its students
   return (
     <div>

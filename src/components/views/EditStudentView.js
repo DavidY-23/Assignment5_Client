@@ -43,8 +43,6 @@ const EditStudentView = (props) => {
   const [validateEmail, setvalidateEmailn] = useState("")
   const [edit, setEdit] = useState("")
   
-
-  //console.log("STUDENT INSIDE EDITVIEW", student)
   function ValidateForm(e) {
     e.preventDefault();
     if (e.target[0].value && e.target[1].value && e.target[2].value) 
@@ -68,11 +66,10 @@ const EditStudentView = (props) => {
     setEdit("The student has information edited.")
   }
 
-  // Render a New Student view with an input form
+  // Render the Edit Student view with an input form
   return (
     <div>
       <h1>Edit Student: {student.firstname}  {student.lastname}</h1>
-
       <div className={classes.root}>
         <div className={classes.formContainer}>
           <div className={classes.formTitle}>

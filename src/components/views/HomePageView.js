@@ -9,6 +9,9 @@ const HomePageView = () => {
   return (
     <div >
       <h1>Home Page</h1>
+      <p>Current Bugs: </p>
+      <p>User needs to refresh page for All Campus when deleting</p>
+      <p>User needs to submit twice for Editing Campus.</p>
     </div>
   );    
 }

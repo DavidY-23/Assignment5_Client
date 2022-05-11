@@ -4,13 +4,10 @@ AllCampusesView.js
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display all campuses.
 ================================================== */
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const AllCampusesView = (props) => {
   const {allCampuses, deleteCampus} = props;
-  console.log("AllCampuses", allCampuses)
   // If there is no campus, display a message.
   if (!allCampuses.length) {
     return <div><p>There are no campuses.</p>
@@ -19,11 +16,11 @@ const AllCampusesView = (props) => {
     </Link>
   </div>
   }
-  //Function used to delete the campus then reloading the page.
+
+  //Function used to delete the campus then reloading the page. (No longer works)
   function deletingCampus(campusID) {
     deleteCampus(campusID)
   }
-  console.log("campuses", allCampuses)
 
   // If there is at least one campus, render All Campuses view 
   return (
@@ -53,10 +50,6 @@ const AllCampusesView = (props) => {
       <br/><br/>
     </div>
   );
-};
-
-AllCampusesView.propTypes = {
-  allCampuses: PropTypes.array.isRequired,
 };
 
 export default AllCampusesView;
