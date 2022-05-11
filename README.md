@@ -1,4 +1,12 @@
 # client-starter-code
+Group Members: David Ye <br>
+Github: https://github.com/DavidY-23
+<br>
+---------------------
+Current Bugs:
+- Users need to click submit twice for the Edit button for Campus for changes to take place
+- Users need to refresh the page for Delete button on Campus for changes to take place. I tried to force the page to reload, but the reloading would happen first
+---------------------
 
 This repository is the client (front-end) starter code for Final Project (CRUD Application).
 
