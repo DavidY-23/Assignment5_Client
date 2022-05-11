@@ -1,5 +1,5 @@
 /*==================================================
-NewStudentView.js
+EditStudentView.js
 
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display the new student page.
@@ -35,13 +35,16 @@ const useStyles = makeStyles( () => ({
   },
 }));
 
-const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+const EditStudentView = (props) => {
+  const {handleChange, handleSubmit, student } = props;
   const classes = useStyles();
   const [validatefName, setvalidatefName] = useState("")
   const [validatelName, setvalidatelName] = useState("")
   const [validateEmail, setvalidateEmailn] = useState("")
+  const [edit, setEdit] = useState("")
+  
 
+  //console.log("STUDENT INSIDE EDITVIEW", student)
   function ValidateForm(e) {
     e.preventDefault();
     if (e.target[0].value && e.target[1].value && e.target[2].value) 
@@ -54,25 +57,30 @@ const NewStudentView = (props) => {
       setvalidatelName("There is no last name.")
     else  
       setvalidatelName("")
-    if (!e.target[3].value) 
+    if (!e.target[2].value) 
       setvalidateEmailn("There is no email.")
     else
       setvalidateEmailn("")
+  }
+  function editedTheForm(e) {
+    e.preventDefault();
+    handleSubmit(e)
+    setEdit("The student has information edited.")
   }
 
   // Render a New Student view with an input form
   return (
     <div>
-      <h1>New Student</h1>
+      <h1>Edit Student: {student.firstname}  {student.lastname}</h1>
 
       <div className={classes.root}>
         <div className={classes.formContainer}>
           <div className={classes.formTitle}>
             <Typography style={{fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e'}}>
-              Add a Student
+              Editing Student 
             </Typography>
           </div>
-          <form style={{textAlign: 'center'}} onSubmit={(e) => ValidateForm(e)}>
+          <form style={{textAlign: 'center'}} onSubmit={(e) => editedTheForm(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
             <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
             <br/>
@@ -84,7 +92,7 @@ const NewStudentView = (props) => {
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Email: </label>
-            <input type="text" name="email" onChange={(e) => handleChange(e)} />
+            <input type="text" name="email"  onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
@@ -102,7 +110,6 @@ const NewStudentView = (props) => {
             <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
-
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
@@ -113,10 +120,11 @@ const NewStudentView = (props) => {
           <h3>{validatefName}</h3>
           <h3>{validatelName}</h3>
           <h3>{validateEmail}</h3>
+          <h3>{edit}</h3>
 
       </div>
     </div>    
   )
 }
 
-export default NewStudentView;
+export default EditStudentView;

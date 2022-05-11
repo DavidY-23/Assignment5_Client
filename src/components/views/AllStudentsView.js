@@ -7,7 +7,7 @@ It constructs a React component to display the all students view page.
 import { Link } from "react-router-dom";
 
 const AllStudentsView = (props) => {
-  const {students, deleteStudent} = props;
+  const {students, deleteStudent, editStudent} = props;
   console.log("students", students);
 
   // If there is no student, display a message
@@ -37,8 +37,10 @@ const AllStudentsView = (props) => {
               <Link to={`/student/${student.id}`}>
                 <h2>{name}</h2>
               </Link>
-              {console.log(deleteStudent())}
-              <button onClick={() => deleteStudent(student.id)}>Delete</button>
+              <button onClick={() => deleteStudent(student.id)}>Delete</button> &nbsp;
+              <Link to={`/editStudent/${student.id}`}>
+              <button>Edit</button>
+              </Link>
               <hr/>
             </div>
           );

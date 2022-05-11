@@ -5,7 +5,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the single student view page.
 ================================================== */
 import { useState } from 'react';
-import { deleteStudent } from '../../store/actions/actionCreators';
+import { Link } from "react-router-dom";
 
 const StudentView = (props) => {
   const { student, deleteStudent } = props;
@@ -19,19 +19,28 @@ const StudentView = (props) => {
     )
   }
   let campus;
+  let campusID;
+  let nocampus; 
   //Used to delete the student
   const deletingTheStudent= () => {
     console.log("STUDENT ID:: ", student.id)
     deleteStudent(student.id)
-
     //deleteStudent(students.student.id)
     setStudentDeleteMessage("Student has been deleted!");
   }
   //If the campus has been deleted. 
   if (student.campus) {
     campus = student.campus.name;
+    campusID = student.campus.id
   } else {
-    campus = "This student has no campus as the ID does not exist."
+    nocampus = "This student has no campus as the ID does not exist, or was not provided."
+  }
+
+  let gpa;
+  if (student.gpa) {
+    gpa = student.gpa;
+  } else {
+    gpa = "This student has no current GPA."
   }
   //Default image will be used if user did not input one.
   console.log("STUDNET URL", student.imageUrl)
@@ -43,13 +52,18 @@ const StudentView = (props) => {
   }
 
 
+
+
   // Render a single Student view 
   return (
     <div>
       <h1>{student.firstname + " " + student.lastname}</h1>
       <h2>{"Students Email: " + student.email}</h2>
-      <h3>{campus}</h3>
-      <h2>{"GPA: " + student.gpa}</h2>
+      <h3>{nocampus}</h3>
+      <Link to={`/campus/${campusID}`}>
+          <h3>{campus}</h3>
+      </Link>
+      <h3>{"GPA: " + gpa}</h3>
       <img src={imageLink} alt="img" height={100} width={100}/>
 
       <br></br>
